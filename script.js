@@ -6,6 +6,11 @@ let battleArena = document.querySelector('#battleArena')
 let buttonDivArena = document.querySelector('.buttonDiv')
 let yourPick =document.querySelector( '.yourPickImg')
 let playAgain = document.querySelector('.playAgain')
+let theirPick =document.querySelector( '.theirPickImg')
+let rulesDiv = document.querySelector('.rulesDiv')
+let rulesButton = document.querySelector('.rules')
+let rulesCloseButton = document.querySelector('.rulesClose')
+let theirImg;
 let theirArenaPick;
 let yourArenaPick;
 let score = 0
@@ -18,6 +23,7 @@ let score = 0
 // console.log(scissors);
 // console.log(rock);
 console.log(battleArena);
+console.log(rulesDiv)
 
 //functions
 
@@ -30,13 +36,14 @@ function displayArena(){
 function reset(){
     battleArena.style.display ="none";
     buttonDivArena.style.display = "initial";
+    yourPick.removeChild(yourImg);
+    theirPick.removeChild(theirImg);
 
 }
 
 function shoot(){
     let randomPull = Math.floor(Math.random() * Math.floor(3));
-    let theirPick =document.querySelector( '.theirPickImg')
-    let theirImg;
+
     
     if (randomPull == 1){
         console.log("house picked paper")
@@ -105,8 +112,22 @@ function battle(){
         console.log(score)
         // score++
     }
+    
 
 
+}
+
+function rulesOpen(){
+    buttonDivArena.style.display = "none";
+    rulesDiv.style.display = "inherit";
+    rulesButton.style.display ="none";
+    console.log(rulesDiv)
+}
+
+function rulesClose(){
+    buttonDivArena.style.display = "inherit";
+    rulesDiv.style.display = "none";
+    rulesButton.style.display ="inherit";
 }
 
 //Events
@@ -125,6 +146,7 @@ rock.addEventListener('click', () =>{
     yourImg.className = "yourPickArenaImg3"
     //Fight!!
     battle();
+  
     }
     );
 
@@ -164,3 +186,5 @@ scissors.addEventListener('click', () =>{
     );    
     
 playAgain.addEventListener('click', reset);
+rulesButton.addEventListener('click', rulesOpen)
+rulesCloseButton.addEventListener('click', rulesClose)
